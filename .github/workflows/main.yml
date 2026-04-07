@@ -1,0 +1,32 @@
+name: Build Zygisk Module
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Beri Izin Eksekusi Gradle
+        run: chmod +x gradlew
+
+      - name: Mulai Memasak Modul (Build)
+        run: ./gradlew assembleRelease
+
+      - name: Ambil Hasil Akhir (.zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Zygisk-Mod-Menu-Exsss
+          path: '**/*.zip'
+          
