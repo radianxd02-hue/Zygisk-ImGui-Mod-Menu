@@ -20,12 +20,12 @@ android {
     buildFeatures {
         prefab true
     }
-    externalNativeBuild {
+        externalNativeBuild {
         ndkBuild {
-            // REVISI ALAMAT: Dihapus kata 'Build/'-nya biar mesin nggak nyasar!
-            path file('src/main/cpp/Android.mk')
+            path file('src/main/cpp/External/Android.mk')
         }
     }
+
     ndkVersion = '27.0.12077973'
 }
 
