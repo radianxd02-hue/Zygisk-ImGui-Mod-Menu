@@ -4,7 +4,7 @@
 #include "Headers/ModMenu.hpp"
 #include "Include/zygisk.hpp"
 
-#define TARGET_PACKAGE std::string("com.mobile.legends")
+#define TARGET_PACKAGE std::string("com.tencent.ig")
 
 
 using zygisk::Api;
