@@ -16,17 +16,26 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17' # Di-upgrade ke Java 17
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r26b # NDK versi stabil buat Zygisk
+          add-to-path: false
 
       - name: Beri Izin Eksekusi Gradle
         run: chmod +x gradlew
 
       - name: Mulai Memasak Modul (Build)
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: ./gradlew assembleRelease
 
       - name: Ambil Hasil Akhir (.zip)
         uses: actions/upload-artifact@v4
         with:
-          name: Zygisk-Mod-Menu-Exsss
-          path: '**/*.zip'
+          name: Zygisk-GymFlex-PUBG
+          path: out/*.zip # Ambil langsung dari folder 'out' biar gak salah comot file
           
